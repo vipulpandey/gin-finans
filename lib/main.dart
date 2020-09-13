@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'buttons.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/one': (context) => ScreenOne(),
-        '/two': (context) => ScreenTwo()
+        '/two': (context) => ScreenTwo(),
+        '/three': (context) => ScreenThree(),
       },
     );
   }
@@ -67,33 +69,26 @@ class MyHomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "Welcome to SenseGrass AI",
+                    "Welcome to Agritech AI",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-                  
-                 Center(
-                   child: Text(
-                          "You will get AI services for the range of Use Cases",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w900),
-                        ),
-                 ),
-                   
-                  
-                  RaisedButton(
-                    onPressed: () {
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOne()));
-                      Navigator.pushNamed(context, '/one');
-                    },
-                    child: Text('Next Screen'),
+                  Center(
+                    child: Text(
+                      "You will get AI services for the range of Use Cases",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+                    ),
                   ),
-                  RaisedButton(
-                    onPressed: () {
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOne()));
-
-                      Navigator.pushNamed(context, '/two');
-                    },
-                    child: Text('Visit Screen two'),
+                  Placeholder(
+                    fallbackHeight: 70,
+                  ),
+                  Wrap(
+                    children: <Widget>[
+                      RectButton(label: "1",),
+                      RectButton(label: "2",),
+                      RectButton(label: "3",),
+                      RectButton(label: "4",)
+                    ],
                   )
                 ],
               ),
@@ -109,7 +104,12 @@ class ScreenOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Screen one")),
+      appBar: AppBar(title: Text("Screen one ")),
+      body: Container(
+          child: Text(
+        " Get the digital mapping of your field done!",
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+      )),
     );
   }
 }
@@ -139,7 +139,26 @@ class ScreenTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Screen two")),
+      appBar: AppBar(title: Text("Screen two( Digital Mapping)")),
+      body: Container(
+          child: Text(
+        " Get the digital mapping of your field done!",
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+      )),
+    );
+  }
+}
+
+class ScreenThree extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Screen two( Digital Mapping)")),
+      body: Container(
+          child: Text(
+        " Get the digital mapping of your field done!",
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+      )),
     );
   }
 }
