@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bank AI',
       theme: ThemeData(
-        
         primarySwatch: Colors.blue,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
@@ -19,11 +18,11 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: MyHomePage(),
-      initialRoute:  '/',
+      initialRoute: '/',
       routes: {
-        '/' : (context) => MyHomePage(),
-        '/one' : (context) => ScreenOne(),
-        '/two' : (context) => ScreenTwo()
+        '/': (context) => MyHomePage(),
+        '/one': (context) => ScreenOne(),
+        '/two': (context) => ScreenTwo()
       },
     );
   }
@@ -33,30 +32,73 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title : Text("Home")),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          
-          child: Column(
-            children: <Widget>[
-              Text("Welcome to GIN Finans", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-              RaisedButton(onPressed: (){
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOne()));
-                Navigator.pushNamed(context, '/one');
-                
-              },
-                child: Text('Next Screen'),
+      // appBar: AppBar(title : Text("Home")),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  // color: Colors.lightBlue,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.only(bottomLeft: Radius.circular(100)),
+                    color: Colors.greenAccent,
+                  ),
+                ),
+                Positioned(
+                  top: 100,
+                  left: 30,
+                  child: Row(
+                    children: [
+                      CircularInd(),
+                      CircularInd(),
+                      CircularInd(),
+                      CircularInd()
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "Welcome to SenseGrass AI",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                  
+                 Center(
+                   child: Text(
+                          "You will get AI services for the range of Use Cases",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w900),
+                        ),
+                 ),
+                   
+                  
+                  RaisedButton(
+                    onPressed: () {
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOne()));
+                      Navigator.pushNamed(context, '/one');
+                    },
+                    child: Text('Next Screen'),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOne()));
+
+                      Navigator.pushNamed(context, '/two');
+                    },
+                    child: Text('Visit Screen two'),
+                  )
+                ],
               ),
-              RaisedButton(onPressed: (){
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOne()));
-                
-                Navigator.pushNamed(context, '/two');
-              },
-                child: Text('Visit Screen two'),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
@@ -68,6 +110,27 @@ class ScreenOne extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Screen one")),
+    );
+  }
+}
+
+class CircularInd extends StatefulWidget {
+  @override
+  _CircularIndState createState() => _CircularIndState();
+}
+
+class _CircularIndState extends State<CircularInd> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: Colors.white,
+      ),
+      child: Text("1"),
     );
   }
 }
