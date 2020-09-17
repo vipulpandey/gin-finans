@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(title : Text("Home")),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Stack(
@@ -53,10 +53,14 @@ class MyHomePage extends StatelessWidget {
                   top: 100,
                   left: 30,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircularInd(),
+                      AddLine(),
                       CircularInd(),
+                      AddLine(),
                       CircularInd(),
+                      AddLine(),
                       CircularInd()
                     ],
                   ),
@@ -68,28 +72,55 @@ class MyHomePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
-                    "Welcome to Agritech AI",
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          RichText(                            
+                            textScaleFactor: 0.8,
+                            text: TextSpan(
+                              text: 'Welcome to ',
+                              style: TextStyle(color: Colors.black),
+                              children: <TextSpan>[
+                                TextSpan(text: 'AI', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+                                TextSpan(text: ' Agritech !'),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            "You will get AI services for the range of Use Cases",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.normal),
+                          ),
+                        ]),
                   ),
-                  Center(
-                    child: Text(
-                      "You will get AI services for the range of Use Cases",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: new TextFormField(
+                      decoration: new InputDecoration(
+                          icon: Icon(Icons.email),
+                          hintText: "Enter your email",
+                          fillColor: Colors.white,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                          )),
+                      validator: (String value) {
+                        return value.contains("@") ? '@ is present' : null;
+                      },
                     ),
                   ),
-                  Placeholder(
-                    fallbackHeight: 70,
-                  ),
-                  Wrap(
-                    children: <Widget>[
-                      RectButton(label: "1",),
-                      RectButton(label: "2",),
-                      RectButton(label: "3",),
-                      RectButton(label: "4",)
-                    ],
-                  )
+                  // Wrap(
+                  //   children: <Widget>[
+                  //     RectButton(label: "1",),
+                  //     RectButton(label: "2",),
+                  //     RectButton(label: "3",),
+
+                  //   ],
+                  // )
                 ],
               ),
             )
@@ -130,7 +161,18 @@ class _CircularIndState extends State<CircularInd> {
         borderRadius: BorderRadius.circular(50),
         color: Colors.white,
       ),
-      child: Text("1"),
+      child: Text("2"),
+    );
+  }
+}
+
+class AddLine extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 1.0,
+      width: 30.0,
+      color: Colors.black,
     );
   }
 }
