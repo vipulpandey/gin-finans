@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'buttons.dart';
+import 'custom_widgets.dart';
+import 'login.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,12 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bank AI',
+      title: 'Agritech AI',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
+        primarySwatch: Colors.blue,  
+        primaryColor: Colors.greenAccent,      
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: MyHomePage(),
@@ -81,19 +80,22 @@ class MyHomePage extends StatelessWidget {
                           RichText(                            
                             textScaleFactor: 0.8,
                             text: TextSpan(
-                              text: 'Welcome to ',
-                              style: TextStyle(color: Colors.black),
+                              // text: 'Welcome to ',
+                              style: DefaultTextStyle.of(context).style,
                               children: <TextSpan>[
-                                TextSpan(text: 'AI', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
-                                TextSpan(text: ' Agritech !'),
+                                TextSpan(text: 'Wecome to AI', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, decoration: TextDecoration.none)),
+                                TextSpan(text: ' Agritech !', style: TextStyle(color : Colors.greenAccent, decoration: TextDecoration.none)),
                               ],
                             ),
                           ),
-                          Text(
-                            "You will get AI services for the range of Use Cases",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.normal),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 40),
+                            child: Text(
+                              "You will get Artificial Intelligence services for the range of Use Cases in the agriculture Industry. Experience the future ! ",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.normal),
+                            ),
                           ),
                         ]),
                   ),
@@ -112,6 +114,16 @@ class MyHomePage extends StatelessWidget {
                         return value.contains("@") ? '@ is present' : null;
                       },
                     ),
+                  ),
+                  SizedBox(height: 30,),
+                  CustomButton(btnText:'Getting Started', onBtnPressed : (){
+                    Navigator.push(context, 
+                      MaterialPageRoute(builder: (context){
+                        return Login();
+                      }
+                      )
+                    );
+                  }
                   ),
                   // Wrap(
                   //   children: <Widget>[
