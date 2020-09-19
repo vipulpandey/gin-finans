@@ -52,3 +52,76 @@ class CustomButton extends StatelessWidget {
         onPressed: onBtnPressed);
   }
 }
+
+class ProgressBar extends StatefulWidget {
+  @override
+  _ProgressBarState createState() => _ProgressBarState();
+}
+
+class _ProgressBarState extends State<ProgressBar> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+              children: <Widget>[
+                Container(
+                  // color: Colors.lightBlue,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.only(bottomLeft: Radius.circular(100)),
+                    color: Colors.greenAccent,
+                  ),
+                ),
+                Positioned(
+                  top: 100,
+                  left: 30,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircularInd(),
+                      AddLine(),
+                      CircularInd(),
+                      AddLine(),
+                      CircularInd(),
+                      AddLine(),
+                      CircularInd()
+                    ],
+                  ),
+                ),
+              ],
+            );
+  }
+}
+// Indicates the Progress Bar
+
+class CircularInd extends StatefulWidget {
+  @override
+  _CircularIndState createState() => _CircularIndState();
+}
+
+class _CircularIndState extends State<CircularInd> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: Colors.white,
+      ),
+      child: Text("2"),
+    );
+  }
+}
+
+class AddLine extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 1.0,
+      width: 30.0,
+      color: Colors.black,
+    );
+  }
+}
