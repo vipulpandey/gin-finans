@@ -1,14 +1,14 @@
-import 'package:bankai/screen2.dart';
+import 'package:bankai/screen3.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_widgets.dart';
 
-class Login extends StatefulWidget {
+class Screen2 extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _Screen2State createState() => _Screen2State();
 }
 
-class _LoginState extends State<Login> {
+class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,11 +39,11 @@ class _LoginState extends State<Login> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(" Create Password",
+                        Text("Personal Information",
                             textAlign: TextAlign.start,
                             style: TextStyle(fontWeight: FontWeight.bold)),
                         Text(
-                          " Password will be used to login",
+                          "Please fill in the form below and you goal for reaching out to us",
                           textAlign: TextAlign.start,
                         ),
                       ],
@@ -52,33 +52,16 @@ class _LoginState extends State<Login> {
 
                   Padding(
                     padding: const EdgeInsets.only(top :20, bottom: 20, right: 10),
-                    child: new TextFormField(
-                      decoration: new InputDecoration(                          
-                          hintText: "Create Password",
-                          fillColor: Colors.white,
-                          border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(25.0),
-                          )),
-                      validator: (String value) {
-                        return value.contains("@") ? '@ is present' : null;
-                      },
-                    ),
+                    child: DropDownClass(),
                   ),
-                  RichText(text: TextSpan(
-                    text: 'Complexity :',
-                    // style: DefaultTextStyle.of(context).style,
-                    style: TextStyle(color: Colors.black)
-                  )),
-                  Placeholder(
-                    fallbackHeight: 50,
-                  ),
+                  
                   SizedBox(
                     height: 20,
                   ),
                   CustomButton('Next', () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return Screen2();
+                      return Screen3();
                     }));
                   }),
                   // Wrap(
@@ -98,3 +81,5 @@ class _LoginState extends State<Login> {
     );
   }
 }
+
+

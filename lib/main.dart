@@ -37,7 +37,20 @@ class MyHomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            ProgressBar(),
+            Stack(
+              children: <Widget>[
+                Container(
+                  // color: Colors.lightBlue,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.only(bottomLeft: Radius.circular(100)),
+                    color: Colors.greenAccent,
+                  ),
+                ),
+                ProgressBar(),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(

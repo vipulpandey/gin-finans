@@ -1,14 +1,13 @@
-import 'package:bankai/screen2.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_widgets.dart';
 
-class Login extends StatefulWidget {
+class Screen3 extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _Screen3State createState() => _Screen3State();
 }
 
-class _LoginState extends State<Login> {
+class _Screen3State extends State<Screen3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +42,7 @@ class _LoginState extends State<Login> {
                             textAlign: TextAlign.start,
                             style: TextStyle(fontWeight: FontWeight.bold)),
                         Text(
-                          " Password will be used to login",
+                          " Password will be used to Screen3",
                           textAlign: TextAlign.start,
                         ),
                       ],
@@ -78,7 +77,7 @@ class _LoginState extends State<Login> {
                   CustomButton('Next', () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return Screen2();
+                      return Screen3();
                     }));
                   }),
                   // Wrap(

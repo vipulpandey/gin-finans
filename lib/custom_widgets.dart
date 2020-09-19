@@ -25,7 +25,7 @@ class _RectButtonState extends State<RectButton> {
 class CustomButton extends StatelessWidget {
   final String btnText;
   final Function onBtnPressed;
-  
+
   CustomButton(this.btnText, this.onBtnPressed);
 
   @override
@@ -53,6 +53,7 @@ class CustomButton extends StatelessWidget {
   }
 }
 
+// Shows the progress of the form filling
 class ProgressBar extends StatefulWidget {
   @override
   _ProgressBarState createState() => _ProgressBarState();
@@ -61,38 +62,25 @@ class ProgressBar extends StatefulWidget {
 class _ProgressBarState extends State<ProgressBar> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-              children: <Widget>[
-                Container(
-                  // color: Colors.lightBlue,
-                  height: 250,
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(100)),
-                    color: Colors.greenAccent,
-                  ),
-                ),
-                Positioned(
-                  top: 100,
-                  left: 30,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircularInd(),
-                      AddLine(),
-                      CircularInd(),
-                      AddLine(),
-                      CircularInd(),
-                      AddLine(),
-                      CircularInd()
-                    ],
-                  ),
-                ),
-              ],
-            );
+    return Positioned(
+      top: 70,
+      left: 30,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CircularInd(),
+          AddLine(),
+          CircularInd(),
+          AddLine(),
+          CircularInd(),
+          AddLine(),
+          CircularInd()
+        ],
+      ),
+    );
   }
 }
-// Indicates the Progress Bar
+// Circular indicator for the Progress Bar
 
 class CircularInd extends StatefulWidget {
   @override
@@ -107,6 +95,7 @@ class _CircularIndState extends State<CircularInd> {
       height: 50,
       alignment: Alignment.center,
       decoration: BoxDecoration(
+        border: Border.all(width: 1),
         borderRadius: BorderRadius.circular(50),
         color: Colors.white,
       ),
@@ -122,6 +111,61 @@ class AddLine extends StatelessWidget {
       height: 1.0,
       width: 30.0,
       color: Colors.black,
+    );
+  }
+}
+
+//  Drop down Widget
+
+class DropDownClass extends StatefulWidget {
+  @override
+  _DropDownClassState createState() => _DropDownClassState();
+}
+
+class _DropDownClassState extends State<DropDownClass> {
+  int _value = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(        
+        decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: Colors.white,
+              border: Border.all()),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Goal for activation",
+                style: TextStyle(fontSize: 12),
+              ),
+              DropdownButton(
+                  value: _value,                
+                  hint: Text("hi there"), 
+                  isExpanded: true,               
+                  items: [
+                    DropdownMenuItem(
+                      child: Text('- Choose Option -'),
+                      value: 1,
+                    ),
+                    DropdownMenuItem(
+                      child: Text('First item'),
+                      value: 2,
+                    )
+                  ],
+                  onChanged: (value) {
+                    print(value);
+                    setState(() {
+                      _value = value;
+                    });
+                  }),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
