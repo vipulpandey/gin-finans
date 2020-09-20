@@ -48,7 +48,7 @@ class CustomButton extends StatelessWidget {
             ],
           ),
         ),
-        color: Theme.of(context).primaryColor,
+        color: Colors.green,
         onPressed: onBtnPressed);
   }
 }
@@ -63,7 +63,7 @@ class _ProgressBarState extends State<ProgressBar> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 70,
+      top: 50,
       left: 30,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,6 +118,11 @@ class AddLine extends StatelessWidget {
 //  Drop down Widget
 
 class DropDownClass extends StatefulWidget {
+
+  final String hintText;
+
+  DropDownClass(this.hintText);
+
   @override
   _DropDownClassState createState() => _DropDownClassState();
 }
@@ -139,8 +144,8 @@ class _DropDownClassState extends State<DropDownClass> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Goal for activation",
-                style: TextStyle(fontSize: 12),
+              Text(widget.hintText,
+                style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
               DropdownButton(
                   value: _value,                

@@ -12,7 +12,7 @@ class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.greenAccent,
+      backgroundColor: Colors.greenAccent,
       appBar: AppBar(
           title: Text(
         "Create Account",
@@ -21,9 +21,9 @@ class _Screen2State extends State<Screen2> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 200,
+              height: 150,
               child: Stack(
-                children: <Widget>[                
+                children: <Widget>[
                   ProgressBar(),
                 ],
               ),
@@ -46,17 +46,23 @@ class _Screen2State extends State<Screen2> {
                           "Please fill in the form below and you goal for reaching out to us",
                           textAlign: TextAlign.start,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 20, bottom: 20, right: 10),
+                          child: Column(
+                            children: [
+                              DropDownClass("Goal for Activation"),
+                              DropDownClass("Monthly Income"),
+                              DropDownClass("Monthly Expense")
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(top :20, bottom: 20, right: 10),
-                    child: DropDownClass(),
-                  ),
-                  
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   CustomButton('Next', () {
                     Navigator.push(context,
@@ -81,5 +87,3 @@ class _Screen2State extends State<Screen2> {
     );
   }
 }
-
-

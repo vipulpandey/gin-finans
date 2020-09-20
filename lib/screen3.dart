@@ -11,7 +11,7 @@ class _Screen3State extends State<Screen3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.greenAccent,
+      backgroundColor: Colors.greenAccent,
       appBar: AppBar(
           title: Text(
         "Create Account",
@@ -20,7 +20,7 @@ class _Screen3State extends State<Screen3> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 200,
+              height: 150,
               child: Stack(
                 children: <Widget>[                
                   ProgressBar(),
@@ -38,11 +38,11 @@ class _Screen3State extends State<Screen3> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(" Create Password",
+                        Text("Schedule Video Call ",
                             textAlign: TextAlign.start,
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                         Text(
-                          " Password will be used to Screen3",
+                          "Choose the data and time  that you preferred, we will send a link via email to make a video call on the scheduled date and time. ",
                           textAlign: TextAlign.start,
                         ),
                       ],
@@ -50,29 +50,18 @@ class _Screen3State extends State<Screen3> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.only(top :20, bottom: 20, right: 10),
-                    child: new TextFormField(
-                      decoration: new InputDecoration(                          
-                          hintText: "Create Password",
-                          fillColor: Colors.white,
-                          border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(25.0),
-                          )),
-                      validator: (String value) {
-                        return value.contains("@") ? '@ is present' : null;
-                      },
-                    ),
-                  ),
-                  RichText(text: TextSpan(
-                    text: 'Complexity :',
-                    // style: DefaultTextStyle.of(context).style,
-                    style: TextStyle(color: Colors.black)
-                  )),
-                  Placeholder(
-                    fallbackHeight: 50,
-                  ),
+                          padding: const EdgeInsets.only(
+                              top: 20, bottom: 20, right: 10),
+                          child: Column(
+                            children: [
+                              DropDownClass("Date "),
+                              DropDownClass("Time"),                              
+                            ],
+                          ),
+                        ),
+                  
                   SizedBox(
-                    height: 20,
+                    height: 50,
                   ),
                   CustomButton('Next', () {
                     Navigator.push(context,
