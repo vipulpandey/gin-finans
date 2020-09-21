@@ -54,35 +54,72 @@ class CustomButton extends StatelessWidget {
 }
 
 // Shows the progress of the form filling
-class ProgressBar extends StatefulWidget {
+class ProgressBar extends StatefulWidget {  
+
+  final List<bool> offset;
+
+  ProgressBar({Key key, this.offset});
+
   @override
   _ProgressBarState createState() => _ProgressBarState();
 }
 
 class _ProgressBarState extends State<ProgressBar> {
+  
+  List<bool> offsetState;
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    // TODO: implement initState
+    offsetState = widget.offset;
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {    
+
+    print("----");    
+    print(widget.offset);
+
     return Positioned(
       top: 50,
       left: 30,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CircularInd(),
+          CircularInd("1", getColor(widget.offset[0])),
           AddLine(),
-          CircularInd(),
+          CircularInd("2", Colors.redAccent),
           AddLine(),
-          CircularInd(),
+          CircularInd("3", Colors.redAccent),
           AddLine(),
-          CircularInd()
+          CircularInd("4", Colors.redAccent)
         ],
       ),
     );
   }
 }
-// Circular indicator for the Progress Bar
+
+// get color conditional
+Color getColor(bool selector){
+  if(selector){
+    print(" conitional -----");
+    print(selector);
+    return Colors.white;
+  }
+  else{
+    print("----red color");
+    return Colors.red;
+  }
+}
+// Circular indicator for the Progress Barr
 
 class CircularInd extends StatefulWidget {
+
+  final String indText;
+  final Color color;
+
+  CircularInd(this.indText, this.color);
+
   @override
   _CircularIndState createState() => _CircularIndState();
 }
@@ -90,6 +127,9 @@ class CircularInd extends StatefulWidget {
 class _CircularIndState extends State<CircularInd> {
   @override
   Widget build(BuildContext context) {
+    
+    print(widget.color);
+
     return Container(
       width: 50,
       height: 50,
@@ -97,9 +137,9 @@ class _CircularIndState extends State<CircularInd> {
       decoration: BoxDecoration(
         border: Border.all(width: 1),
         borderRadius: BorderRadius.circular(50),
-        color: Colors.white,
+        color: Colors.redAccent,
       ),
-      child: Text("2"),
+      child: Text(widget.indText),
     );
   }
 }
@@ -114,6 +154,9 @@ class AddLine extends StatelessWidget {
     );
   }
 }
+
+
+
 
 //  Drop down Widget
 

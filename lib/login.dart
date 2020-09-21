@@ -24,7 +24,7 @@ class _LoginState extends State<Login> {
               height: 200,
               child: Stack(
                 children: <Widget>[                
-                  ProgressBar(),
+                  ProgressBar(offset: [true, false, false, false],),
                 ],
               ),
             ),

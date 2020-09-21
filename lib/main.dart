@@ -6,6 +6,7 @@ void main() {
   runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -29,7 +30,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  List<bool> _progressbarFlag = [false, false, false, false];
+
+  @override
+  void initState() {
+    // TODO: implement initState      
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,11 +61,11 @@ class MyHomePage extends StatelessWidget {
                   height: 250,
                   decoration: BoxDecoration(
                     borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(100)),
+                        BorderRadius.only(bottomLeft: Radius.circular(100), bottomRight:  Radius.circular(100)),
                     color: Colors.greenAccent,
                   ),
                 ),
-                ProgressBar(),
+                ProgressBar(offset: this._progressbarFlag,)
               ],
             ),
             Padding(
@@ -103,7 +120,7 @@ class MyHomePage extends StatelessWidget {
                   SizedBox(height: 30,),
                   CustomButton('Getting Started',  (){
                     Navigator.push(context, 
-                      MaterialPageRoute(builder: (context){
+                      MaterialPageRoute(builder: (context){                                               
                         return Login();
                       }
                       )
