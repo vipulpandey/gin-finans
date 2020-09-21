@@ -69,11 +69,9 @@ class _LoginState extends State<Login> {
                     // style: DefaultTextStyle.of(context).style,
                     style: TextStyle(color: Colors.black)
                   )),
-                  Placeholder(
-                    fallbackHeight: 50,
-                  ),
+                  
                   SizedBox(
-                    height: 20,
+                    height: 130,
                   ),
                   CustomButton('Next', () {
                     Navigator.push(context,

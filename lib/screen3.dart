@@ -23,7 +23,7 @@ class _Screen3State extends State<Screen3> {
               height: 150,
               child: Stack(
                 children: <Widget>[                
-                  ProgressBar(),
+                  ProgressBar(offset: [true, false, false, false]),
                 ],
               ),
             ),
