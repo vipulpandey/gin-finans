@@ -9,6 +9,9 @@ class Screen2 extends StatefulWidget {
 }
 
 class _Screen2State extends State<Screen2> {
+
+  List<bool> _progressbarFlag = [true, true, true,false];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +27,7 @@ class _Screen2State extends State<Screen2> {
               height: 150,
               child: Stack(
                 children: <Widget>[
-                  ProgressBar(offset: [true, false, false, false]),
+                  ProgressBar(offset: this._progressbarFlag),
                 ],
               ),
             ),
@@ -62,11 +65,18 @@ class _Screen2State extends State<Screen2> {
                   ),
 
                   SizedBox(
-                    height: 10,
+                    height: 1,
                   ),
                   CustomButton('Next', () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
+                      //   WidgetsBinding.instance.addPostFrameCallback((_) {
+                      //   setState(() {
+                      //     print(" screen 2 working");
+                      //     _progressbarFlag = [true, true, true, false];
+                          
+                      //   });
+                      // });
                       return Screen3();
                     }));
                   }),

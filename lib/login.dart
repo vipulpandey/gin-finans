@@ -1,3 +1,4 @@
+import 'package:bankai/main.dart';
 import 'package:bankai/screen2.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  List<bool> _progressbarFlag = [true, true, false,false];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +27,10 @@ class _LoginState extends State<Login> {
             Container(
               height: 200,
               child: Stack(
-                children: <Widget>[                
-                  ProgressBar(offset: [true, false, false, false],),
+                children: <Widget>[
+                  ProgressBar(
+                    offset: this._progressbarFlag,
+                  ),
                 ],
               ),
             ),
@@ -51,9 +57,10 @@ class _LoginState extends State<Login> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.only(top :20, bottom: 20, right: 10),
+                    padding:
+                        const EdgeInsets.only(top: 20, bottom: 20, right: 10),
                     child: new TextFormField(
-                      decoration: new InputDecoration(                          
+                      decoration: new InputDecoration(
                           hintText: "Create Password",
                           fillColor: Colors.white,
                           border: new OutlineInputBorder(
@@ -64,18 +71,36 @@ class _LoginState extends State<Login> {
                       },
                     ),
                   ),
-                  RichText(text: TextSpan(
-                    text: 'Complexity :',
-                    // style: DefaultTextStyle.of(context).style,
-                    style: TextStyle(color: Colors.black)
-                  )),
-                  
+                  RichText(
+                      text: TextSpan(
+                          text: 'Complexity :',
+                          // style: DefaultTextStyle.of(context).style,
+                          style: TextStyle(color: Colors.black))),
+                 
+                  Container(
+      width: 50,
+      height: 50,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        border: Border.all(width: 1),
+        borderRadius: BorderRadius.circular(50),
+        color: Colors.green,
+      ),
+      child: Icon(Icons.check),
+    ),
                   SizedBox(
-                    height: 130,
+                    height: 100,
                   ),
                   CustomButton('Next', () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                        setState(() {
+                          print(" screen 2 working");
+                          _progressbarFlag = [true, true, false, false];
+                          
+                        });
+                      });
                       return Screen2();
                     }));
                   }),

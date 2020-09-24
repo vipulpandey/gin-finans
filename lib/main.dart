@@ -6,7 +6,6 @@ void main() {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -15,8 +14,8 @@ class MyApp extends StatelessWidget {
       title: 'Agritech AI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,  
-        primaryColor: Colors.greenAccent,      
+        primarySwatch: Colors.blue,
+        primaryColor: Colors.greenAccent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: MyHomePage(),
@@ -32,19 +31,16 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   List<bool> _progressbarFlag = [false, false, false, false];
 
   @override
   void initState() {
-    // TODO: implement initState      
+    // TODO: implement initState
     super.initState();
   }
 
@@ -54,19 +50,24 @@ class _MyHomePageState extends State<MyHomePage> {
       // appBar: AppBar(title : Text("Home")),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
+          children: <Widget>[            
             Stack(
               children: <Widget>[
+                
                 Container(
                   // color: Colors.lightBlue,
-                  height: 250,
+                  height: 200,
                   decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(100), bottomRight:  Radius.circular(100)),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(100),
+                        bottomRight: Radius.circular(100)),
                     color: Colors.greenAccent,
                   ),
                 ),
-                ProgressBar(offset: this._progressbarFlag,)
+                
+                ProgressBar(
+                  offset: this._progressbarFlag,
+                )
               ],
             ),
             Padding(
@@ -80,14 +81,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          RichText(                            
+                          RichText(
                             textScaleFactor: 0.8,
                             text: TextSpan(
                               // text: 'Welcome to ',
                               style: DefaultTextStyle.of(context).style,
                               children: <TextSpan>[
-                                TextSpan(text: 'Wecome to AI', style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, decoration: TextDecoration.none)),
-                                TextSpan(text: ' Agritech !', style: TextStyle(color : Colors.greenAccent, decoration: TextDecoration.none)),
+                                TextSpan(
+                                    text: 'Wecome to AI',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.none)),
+                                TextSpan(
+                                    text: ' Agritech !',
+                                    style: TextStyle(
+                                        color: Colors.greenAccent,
+                                        decoration: TextDecoration.none)),
                               ],
                             ),
                           ),
@@ -104,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.only(top: 60),
                     child: new TextFormField(
                       decoration: new InputDecoration(
                           icon: Icon(Icons.email),
@@ -118,16 +128,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
-                  SizedBox(height: 30,),
-                  CustomButton('Getting Started',  (){
-                    Navigator.push(context, 
-                      MaterialPageRoute(builder: (context){                                               
-                        return Login();
-                      }
-                      )
-                    );
-                  }
+                  SizedBox(
+                    height: 80,
                   ),
+                  CustomButton('Getting Started', () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        setState(() {
+                          _progressbarFlag = [true, false, false, false];
+                        });
+                      });
+
+                      return Login();
+                    }));
+                  }),
                   // Wrap(
                   //   children: <Widget>[
                   //     RectButton(label: "1",),
@@ -159,10 +174,6 @@ class ScreenOne extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 class ScreenTwo extends StatelessWidget {
   @override

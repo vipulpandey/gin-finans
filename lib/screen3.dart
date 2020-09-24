@@ -23,7 +23,7 @@ class _Screen3State extends State<Screen3> {
               height: 150,
               child: Stack(
                 children: <Widget>[                
-                  ProgressBar(offset: [true, false, false, false]),
+                  ProgressBar(offset: [true, true, true, true]),
                 ],
               ),
             ),
@@ -61,12 +61,12 @@ class _Screen3State extends State<Screen3> {
                         ),
                   
                   SizedBox(
-                    height: 50,
+                    height: 70,
                   ),
                   CustomButton('Next', () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return null;
+                      return Screen3();
                     }));
                   }),
                   // Wrap(

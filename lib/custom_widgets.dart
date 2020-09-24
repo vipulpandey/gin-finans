@@ -67,7 +67,7 @@ class ProgressBar extends StatefulWidget {
 class _ProgressBarState extends State<ProgressBar> {
   
   List<bool> offsetState;
-
+  
   @override
   void initState() {
     // TODO: implement initState
@@ -88,11 +88,11 @@ class _ProgressBarState extends State<ProgressBar> {
         children: [
           CircularInd("1", getColor(widget.offset[0])),
           AddLine(),
-          CircularInd("2", Colors.redAccent),
+          CircularInd("2", getColor(widget.offset[1])),
           AddLine(),
-          CircularInd("3", Colors.redAccent),
+          CircularInd("3", getColor(widget.offset[2])),
           AddLine(),
-          CircularInd("4", Colors.redAccent)
+          CircularInd("4", getColor(widget.offset[3]))
         ],
       ),
     );
@@ -104,11 +104,11 @@ Color getColor(bool selector){
   if(selector){
     print(" conitional -----");
     print(selector);
-    return Colors.white;
+    return Colors.red;
   }
   else{
     print("----red color");
-    return Colors.red;
+    return Colors.white;
   }
 }
 // Circular indicator for the Progress Barr
@@ -137,7 +137,7 @@ class _CircularIndState extends State<CircularInd> {
       decoration: BoxDecoration(
         border: Border.all(width: 1),
         borderRadius: BorderRadius.circular(50),
-        color: Colors.redAccent,
+        color: widget.color,
       ),
       child: Text(widget.indText),
     );
