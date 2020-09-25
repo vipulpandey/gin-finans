@@ -50,10 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // appBar: AppBar(title : Text("Home")),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[            
+          children: <Widget>[
             Stack(
               children: <Widget>[
-                
                 Container(
                   // color: Colors.lightBlue,
                   height: 200,
@@ -64,7 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.greenAccent,
                   ),
                 ),
-                
                 ProgressBar(
                   offset: this._progressbarFlag,
                 )
@@ -113,36 +111,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ]),
                   ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(top: 60),
-                    child: new TextFormField(
-                      decoration: new InputDecoration(
-                          icon: Icon(Icons.email),
-                          hintText: "Enter your email",
-                          fillColor: Colors.white,
-                          border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(25.0),
-                          )),
-                      validator: (String value) {
-                        return value.contains("@") ? '@ is present' : null;
-                      },
-                    ),
-                  ),
+                  MyCustomForm(),
                   SizedBox(
-                    height: 80,
+                    height: 30,
                   ),
-                  CustomButton('Getting Started', () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        setState(() {
-                          _progressbarFlag = [true, false, false, false];
-                        });
-                      });
 
-                      return Login();
-                    }));
-                  }),
                   // Wrap(
                   //   children: <Widget>[
                   //     RectButton(label: "1",),
@@ -199,6 +172,75 @@ class ScreenThree extends StatelessWidget {
         " Get the digital mapping of your field done!",
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
       )),
+    );
+  }
+}
+
+class MyCustomForm extends StatefulWidget {
+  @override
+  _MyCustomFormState createState() => _MyCustomFormState();
+}
+
+class _MyCustomFormState extends State<MyCustomForm> {
+  // Create a global key that uniquely identifies the Form widget
+  // and allows validation of the form.
+  //
+  // Note: This is a GlobalKey<FormState>,
+  // not a GlobalKey<MyCustomFormState>.
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 60),
+            child: new TextFormField(
+              decoration: new InputDecoration(
+                  icon: Icon(Icons.email),
+                  hintText: "Enter your email",
+                  fillColor: Colors.white,
+                  border: new OutlineInputBorder(
+                    borderRadius: new BorderRadius.circular(25.0),
+                  )),
+              validator: (String value) {
+                bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value);
+                return emailValid ? null : 'Please provide valid email';
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 70),
+            child: CustomButton('Getting Started', () {
+              
+              
+              if (_formKey.currentState.validate()) {
+                // If the form is valid, display a snackbar. In the real world,
+                // you'd often call a server or save the information in a database.
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  // setState(() {
+                  //   _progressbarFlag = [true, false, false, false];
+                  // });
+                });
+
+                return Login();
+              }));
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text('Processing Data')));
+              } else{
+                print("--testing");
+                print("not gonna happe");
+              }
+
+              
+            }),
+          ),
+        ],
+      ),
     );
   }
 }

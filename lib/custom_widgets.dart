@@ -104,7 +104,7 @@ Color getColor(bool selector){
   if(selector){
     print(" conitional -----");
     print(selector);
-    return Colors.red;
+    return Colors.yellow[700];
   }
   else{
     print("----red color");
@@ -217,3 +217,9 @@ class _DropDownClassState extends State<DropDownClass> {
     );
   }
 }
+
+
+
+
+
+
