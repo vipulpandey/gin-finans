@@ -31,12 +31,14 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+
+  static List<bool> progressbarFlag = [false, false, false, false];
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<bool> _progressbarFlag = [false, false, false, false];
+  
 
   @override
   void initState() {
@@ -64,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 ProgressBar(
-                  offset: this._progressbarFlag,
+                  offset: MyHomePage.progressbarFlag,
                 )
               ],
             ),
@@ -115,15 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(
                     height: 30,
                   ),
-
-                  // Wrap(
-                  //   children: <Widget>[
-                  //     RectButton(label: "1",),
-                  //     RectButton(label: "2",),
-                  //     RectButton(label: "3",),
-
-                  //   ],
-                  // )
+                  
                 ],
               ),
             )
@@ -193,6 +187,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidate: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -222,18 +217,17 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 // you'd often call a server or save the information in a database.
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                  // setState(() {
-                  //   _progressbarFlag = [true, false, false, false];
-                  // });
+                  setState(() {
+                    MyHomePage.progressbarFlag = [false, false, false, false];
+                  });
                 });
 
                 return Login();
               }));
-                Scaffold.of(context)
-                    .showSnackBar(SnackBar(content: Text('Processing Data')));
+                
               } else{
-                print("--testing");
-                print("not gonna happe");
+                // Scaffold.of(context)
+                //     .showSnackBar(SnackBar(content: Text('Processing Data')));
               }
 
               

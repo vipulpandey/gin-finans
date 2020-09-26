@@ -10,7 +10,7 @@ class Screen2 extends StatefulWidget {
 
 class _Screen2State extends State<Screen2> {
 
-  List<bool> _progressbarFlag = [true, true, true,false];
+  List<bool> _progressbarFlag = [true, true, false,false];
 
   @override
   Widget build(BuildContext context) {

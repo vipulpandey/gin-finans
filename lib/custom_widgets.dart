@@ -139,7 +139,7 @@ class _CircularIndState extends State<CircularInd> {
         borderRadius: BorderRadius.circular(50),
         color: widget.color,
       ),
-      child: Text(widget.indText),
+      child: Text(widget.indText, style: TextStyle(fontSize: 20),),
     );
   }
 }
