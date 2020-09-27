@@ -11,12 +11,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   List<bool> _progressbarFlag = [true, false, false, false];
-  List<bool> _passwordFlag = [
-    false,
-    false,
-    false,
-    false
-  ]; // [lowercase, uppercase, number , characters]
+  // [lowercase, uppercase, number , characters]
+  
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +72,7 @@ class _LoginState extends State<Login> {
                   //     },
                   //   ),
                   // ),
-                  MyCustomForm1([true, true, true, true]),
+                  MyCustomForm1(true, true, true, true),
 
                   // Wrap(
                   //   children: <Widget>[
@@ -97,9 +93,13 @@ class _LoginState extends State<Login> {
 }
 
 class MyCustomForm1 extends StatefulWidget {
-  List<bool> indicatorFlag;
+  
+  bool lowerInd ;
+  bool upperInd;
+  bool numInd ;
+  bool charInd ;
 
-  MyCustomForm1(this.indicatorFlag);
+  MyCustomForm1(this.lowerInd, this.upperInd, this.numInd, this.charInd);
 
   @override
   _MyCustomForm1State createState() => _MyCustomForm1State();
@@ -132,51 +132,70 @@ class _MyCustomForm1State extends State<MyCustomForm1> {
                       borderRadius: new BorderRadius.circular(25.0),
                     )),
                 validator: (String value) {
+                  // 
                   Pattern pattern =
                       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
                   RegExp regex = new RegExp(pattern);
 
                   // lowercase
-                  bool lowercaseValid = RegExp(r'^[a-z]+$').hasMatch(value);
+                  bool lowercaseValid = RegExp(r'(?=.*[a-z])').hasMatch(value);
                   // uppercase
-                  bool uppercaseValid = RegExp(r'^[A-Z]+$').hasMatch(value);
+                  bool uppercaseValid = RegExp(r'(?=.*[A-Z])').hasMatch(value);
                   // Number
-                  bool numValid = RegExp(r'(?=.*[0-9])+$').hasMatch(value);
+                  bool numValid = RegExp(r'(?=.*?[0-9])').hasMatch(value);
                   // Character
+                  bool charlenValid = value.length > 9 ;
 
                   if (value.isEmpty) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       setState(() {
-                        widget.indicatorFlag = [true, true, true, true];
+                        widget.charInd = true;
+                        widget.lowerInd = true;
+                        widget.upperInd = true;
+                        widget.numInd = true;
                       });
                     });
                     return 'Please enter password';
-                  } else if (value.length > 9) {
+                  } else if (charlenValid) {
 
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       setState(() {
-                        widget.indicatorFlag = [true,true , true, false];
+                     
+                        widget.charInd = false;
+                                                
                       });
                     });
                     return "";
                   } else if (lowercaseValid) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       setState(() {
-                        widget.indicatorFlag = [false, true, true, true];
+                        
+                        widget.lowerInd= false;
                       });
                     });
 
                     return "";
-                  }else if (uppercaseValid) {
+                  } else if (uppercaseValid) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      setState(() {
-                        widget.indicatorFlag = [false, false, true, true];
+                                            
+                      setState(() {                        
+                        widget.upperInd = false;
+                      });
+                    });
+
+                    return "";
+                  } else if (numValid) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      setState(() {                        
+                        widget.numInd = false;
+
                       });
                     });
 
                     return "";
                   }
                    else {
+                     
                     if (!regex.hasMatch(value))
                       return 'Enter valid password';
                     else
@@ -199,7 +218,7 @@ class _MyCustomForm1State extends State<MyCustomForm1> {
             children: [
               Column(
                 children: [
-                  PasswordValidator(widget.indicatorFlag[0], "a"),
+                  PasswordValidator(widget.lowerInd, "a"),
                   SizedBox(
                     height: 10,
                   ),
@@ -211,7 +230,7 @@ class _MyCustomForm1State extends State<MyCustomForm1> {
               ),
               Column(
                 children: [
-                  PasswordValidator(widget.indicatorFlag[1], "A"),
+                  PasswordValidator(widget.upperInd, "A"),
                   SizedBox(
                     height: 10,
                   ),
@@ -223,7 +242,7 @@ class _MyCustomForm1State extends State<MyCustomForm1> {
               ),
               Column(
                 children: [
-                  PasswordValidator(widget.indicatorFlag[2], "123"),
+                  PasswordValidator(widget.numInd, "123"),
                   SizedBox(
                     height: 10,
                   ),
@@ -235,7 +254,7 @@ class _MyCustomForm1State extends State<MyCustomForm1> {
               ),
               Column(
                 children: [
-                  PasswordValidator(widget.indicatorFlag[3], "9+"),
+                  PasswordValidator(widget.charInd, "9+"),
                   SizedBox(
                     height: 10,
                   ),
@@ -247,8 +266,13 @@ class _MyCustomForm1State extends State<MyCustomForm1> {
           Padding(
             padding: const EdgeInsets.only(top: 40),
             child: CustomButton('Next', () {
-              if (_formKey.currentState.validate()) {
-                // If the form is valid, display a snackbar. In the real world,
+              
+              // if (_formKey.currentState.validate()) {
+                
+              // } else {
+              //   print("--testing");
+              // }
+              // If the form is valid, display a snackbar. In the real world,
                 // you'd often call a server or save the information in a database.
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -257,13 +281,10 @@ class _MyCustomForm1State extends State<MyCustomForm1> {
                     });
                   });
 
-                  return Login();
+                  return Screen2();
                 }));
                 Scaffold.of(context)
                     .showSnackBar(SnackBar(content: Text('Processing Data')));
-              } else {
-                print("--testing");
-              }
             }),
           ),
         ],
