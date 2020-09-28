@@ -72,7 +72,7 @@ class _Screen3State extends State<Screen3> {
                   CustomButton('Next', () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return Screen3();
+                      return null;
                     }));
                   }),                  
                 ],
