@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Agritech AI',
+      title: 'Banking AI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -88,13 +88,13 @@ class _MyHomePageState extends State<MyHomePage> {
                               style: DefaultTextStyle.of(context).style,
                               children: <TextSpan>[
                                 TextSpan(
-                                    text: 'Wecome to AI',
+                                    text: 'Wecome to AI in',
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         decoration: TextDecoration.none)),
                                 TextSpan(
-                                    text: ' Agritech !',
+                                    text: ' Banking !',
                                     style: TextStyle(
                                         color: Colors.greenAccent,
                                         decoration: TextDecoration.none)),
@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Padding(
                             padding: const EdgeInsets.only(right: 40),
                             child: Text(
-                              "You will get Artificial Intelligence services for the range of Use Cases in the agriculture Industry. Experience the future ! ",
+                              "You will get Artificial Intelligence services for the range of Use Cases in the Banking Sector. Experience the future ! ",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.normal),
