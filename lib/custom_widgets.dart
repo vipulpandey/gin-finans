@@ -54,8 +54,7 @@ class CustomButton extends StatelessWidget {
 }
 
 // Shows the progress of the form filling
-class ProgressBar extends StatefulWidget {  
-
+class ProgressBar extends StatefulWidget {
   final List<bool> offset;
 
   ProgressBar({Key key, this.offset});
@@ -65,19 +64,18 @@ class ProgressBar extends StatefulWidget {
 }
 
 class _ProgressBarState extends State<ProgressBar> {
-  
   List<bool> offsetState;
-  
+
   @override
   void initState() {
     // TODO: implement initState
     offsetState = widget.offset;
     super.initState();
   }
-  @override
-  Widget build(BuildContext context) {    
 
-    print("----");    
+  @override
+  Widget build(BuildContext context) {
+    print("----");
     print(widget.offset);
 
     return Positioned(
@@ -100,13 +98,12 @@ class _ProgressBarState extends State<ProgressBar> {
 }
 
 // get color conditional
-Color getColor(bool selector){
-  if(selector){
+Color getColor(bool selector) {
+  if (selector) {
     print(" conitional -----");
     print(selector);
     return Colors.yellow[700];
-  }
-  else{
+  } else {
     print("----red color");
     return Colors.white;
   }
@@ -114,7 +111,6 @@ Color getColor(bool selector){
 // Circular indicator for the Progress Barr
 
 class CircularInd extends StatefulWidget {
-
   final String indText;
   final Color color;
 
@@ -127,7 +123,6 @@ class CircularInd extends StatefulWidget {
 class _CircularIndState extends State<CircularInd> {
   @override
   Widget build(BuildContext context) {
-    
     print(widget.color);
 
     return Container(
@@ -139,7 +134,10 @@ class _CircularIndState extends State<CircularInd> {
         borderRadius: BorderRadius.circular(50),
         color: widget.color,
       ),
-      child: Text(widget.indText, style: TextStyle(fontSize: 20),),
+      child: Text(
+        widget.indText,
+        style: TextStyle(fontSize: 20),
+      ),
     );
   }
 }
@@ -155,13 +153,9 @@ class AddLine extends StatelessWidget {
   }
 }
 
-
-
-
 //  Drop down Widget
 
 class DropDownClass extends StatefulWidget {
-
   final String hintText;
 
   DropDownClass(this.hintText);
@@ -172,44 +166,52 @@ class DropDownClass extends StatefulWidget {
 
 class _DropDownClassState extends State<DropDownClass> {
   int _value = 1;
+  DateTime _datetime;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(        
+      child: Container(
         decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: Colors.white,
-              border: Border.all()),
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.white,
+            border: Border.all()),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(widget.hintText,
+              Text(
+                widget.hintText,
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
               DropdownButton(
-                  value: _value,                
-                  hint: Text("hi there"), 
-                  isExpanded: true,               
+                  value: _value,
+                  hint: Text("hi there"),
+                  isExpanded: true,
+                  onTap: () {
+                    showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2001),
+                        lastDate: DateTime(2022)).then((date) => setState((){
+                          _datetime = date;
+                        }) );
+                  },
                   items: [
                     DropdownMenuItem(
-                      child: Text('- Choose Option -'),
+                      child: Text(_datetime == null
+                          ? '- Choose Option -'
+                          : _datetime.toString()),
                       value: 1,
                     ),
-                    DropdownMenuItem(
-                      child: Text('First item'),
-                      value: 2,
-                    )
                   ],
-                  onChanged: (value) {
-                    print(value);
+                  onChanged: (value) {                    
                     setState(() {
                       _value = value;
                     });
-                  }),
+                  } ),
             ],
           ),
         ),
@@ -219,7 +221,63 @@ class _DropDownClassState extends State<DropDownClass> {
 }
 
 
+class DropDownClass1 extends StatefulWidget {
+  final String hintText;
 
+  DropDownClass1(this.hintText);
 
+  @override
+  _DropDownClass1State createState() => _DropDownClass1State();
+}
 
+class _DropDownClass1State extends State<DropDownClass1> {
+  int _value = 1;
+  TimeOfDay _time;
 
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.white,
+            border: Border.all()),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.hintText,
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+              DropdownButton(
+                  value: _value,
+                  hint: Text("hi there"),
+                  isExpanded: true,
+                  onTap: () {
+                    showTimePicker(context: context, initialTime: TimeOfDay.now()).then((time) => setState((){
+                          _time = time;
+                        }) );
+                  },
+                  items: [
+                    DropdownMenuItem(
+                      child: Text(_time == null
+                          ? '- Choose Option -'
+                          : _time.toString()),
+                      value: 1,
+                    ),
+                  ],
+                  onChanged: (value) {                    
+                    setState(() {
+                      _value = value;
+                    });
+                  } ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

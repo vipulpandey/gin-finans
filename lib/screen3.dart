@@ -59,8 +59,9 @@ class _Screen3State extends State<Screen3> {
                         const EdgeInsets.only(top: 20, bottom: 20, right: 10),
                     child: Column(
                       children: [
-                        DropDownClass("Date "),
-                        DropDownClass("Time"),
+                        DropDownClass("Date "), 
+                        // CalendarDatePicker(initialDate: DateTime.now(), firstDate: DateTime(2001), lastDate: DateTime(2022), onDateChanged: null),                    
+                        DropDownClass1("Time"),
                       ],
                     ),
                   ),
@@ -73,15 +74,7 @@ class _Screen3State extends State<Screen3> {
                         MaterialPageRoute(builder: (context) {
                       return Screen3();
                     }));
-                  }),
-                  // Wrap(
-                  //   children: <Widget>[
-                  //     RectButton(label: "1",),
-                  //     RectButton(label: "2",),
-                  //     RectButton(label: "3",),
-
-                  //   ],
-                  // )
+                  }),                  
                 ],
               ),
             )
